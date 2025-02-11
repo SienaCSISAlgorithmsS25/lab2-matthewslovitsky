@@ -222,6 +222,8 @@ public class HighwayGraph
         //System.out.println(g);
 
 	// ADD CODE HERE TO COMPLETE LAB TASKS
+
+    //FIRST TASK
     int north = 0;
     int south = 0;
     int east = 0;
@@ -263,5 +265,45 @@ public class HighwayGraph
     System.out.println("Longest Label: " + g.vertices[longest].label);
     System.out.println("Shortest Label: " + g.vertices[shortest].label);
 
+
+    System.out.println("\n\n");
+
+    //SECOND TASK
+    int longestLabel = 0;
+    int shortestLabel = 0;
+    int longestEdge = 0;
+    int shortestEdge = 0;
+
+
+    for(int i = 1;i < g.vertices.length  ;i++){
+        if(g.vertices[i].head.label.length() > g.vertices[longestLabel].head.label.length())
+        {
+            longestLabel = i;
+        }
+        else if(g.vertices[i].head.label.length() < g.vertices[shortestLabel].head.label.length())
+        {
+            shortestLabel = i;
+        }
+        else if(g.vertices[i].head.length > g.vertices[longestEdge].head.length )
+        {
+            longestEdge = i;
+        }
+        else if(g.vertices[i].head.length < g.vertices[shortestEdge].head.length)
+        {
+            shortestEdge = i;
+        }
     }
+
+        System.out.println("Longest Label: " + g.vertices[longestLabel].label);
+        System.out.println("Shortest Label: " + g.vertices[shortestLabel].label);
+        System.out.println("Longest Edge: " + g.vertices[longestEdge].head.length);
+        System.out.println("Shortest Edge: " + g.vertices[shortestEdge].head.length);
+
+
+
+    }
+
+
+    
+
 }

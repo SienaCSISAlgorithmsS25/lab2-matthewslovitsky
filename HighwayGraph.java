@@ -277,6 +277,7 @@ public class HighwayGraph
     int shortestEdge = 0;
     int edgeCount = 0;
     Set<String> countedEdges = new HashSet<>();
+    double totalLen = 0;
 
 
     for(int i = 1;i < g.vertices.length  ;i++){
@@ -306,8 +307,10 @@ public class HighwayGraph
         if (!countedEdges.contains(edgeKey)) {
             countedEdges.add(edgeKey);
             edgeCount++;  // Count only one instance of each undirected edge
+            totalLen += totalLen + g.vertices[i].head.length; // total length of all the edges 
         }
 
+        
 
     }
 
@@ -317,6 +320,7 @@ public class HighwayGraph
         System.out.println("Shortest Edge: " + g.vertices[shortestEdge].head.length);
         System.out.println("Edge Count: " + edgeCount);
         System.out.println("Stored # of Edges when constructed: " + g.numEdges);
+        System.out.println("Total Len: " + totalLen );
 
 
     }

@@ -14,8 +14,10 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public class HighwayGraph
 {
@@ -273,6 +275,8 @@ public class HighwayGraph
     int shortestLabel = 0;
     int longestEdge = 0;
     int shortestEdge = 0;
+    int edgeCount = 0;
+    Set<String> countedEdges = new HashSet<>();
 
 
     for(int i = 1;i < g.vertices.length  ;i++){
@@ -280,28 +284,43 @@ public class HighwayGraph
         {
             longestLabel = i;
         }
-        else if(g.vertices[i].head.label.length() < g.vertices[shortestLabel].head.label.length())
+        if(g.vertices[i].head.label.length() < g.vertices[shortestLabel].head.label.length())
         {
             shortestLabel = i;
+
         }
-        else if(g.vertices[i].head.length > g.vertices[longestEdge].head.length )
+        if(g.vertices[i].head.length > g.vertices[longestEdge].head.length )
         {
             longestEdge = i;
+
         }
-        else if(g.vertices[i].head.length < g.vertices[shortestEdge].head.length)
+        if(g.vertices[i].head.length < g.vertices[shortestEdge].head.length)
         {
             shortestEdge = i;
         }
+        if(g.vertices[i] != null){
+        }
+        String edgeKey = Math.min(i, g.vertices[i].head.dest) + "-" + Math.max(i, g.vertices[i].head.dest);
+       
+
+        if (!countedEdges.contains(edgeKey)) {
+            countedEdges.add(edgeKey);
+            edgeCount++;  // Count only one instance of each undirected edge
+        }
+
+
     }
 
         System.out.println("Longest Label: " + g.vertices[longestLabel].label);
         System.out.println("Shortest Label: " + g.vertices[shortestLabel].label);
         System.out.println("Longest Edge: " + g.vertices[longestEdge].head.length);
         System.out.println("Shortest Edge: " + g.vertices[shortestEdge].head.length);
-
+        System.out.println("Edge Count: " + edgeCount);
+        System.out.println("Stored # of Edges when constructed: " + g.numEdges);
 
 
     }
+
 
 
     

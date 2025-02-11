@@ -219,8 +219,49 @@ public class HighwayGraph
         s.close();
 
         // print summary of the graph
-        System.out.println(g);
+        //System.out.println(g);
 
 	// ADD CODE HERE TO COMPLETE LAB TASKS
+    int north = 0;
+    int south = 0;
+    int east = 0;
+    int west = 0;
+    int longest = 0;
+    int shortest = 0;
+
+    for (int check =1; check < g.vertices.length ;check++){
+        if(g.vertices[check].point.lat > g.vertices[north].point.lat)
+        {
+            north = check;
+        }
+        else if(g.vertices[check].point.lat < g.vertices[south].point.lat)
+        {
+            south = check;
+        }
+        else if(g.vertices[check].point.lng > g.vertices[east].point.lng)
+        {
+            east = check; 
+        }
+        else if(g.vertices[check].point.lng < g.vertices[west].point.lng)
+        {
+            west = check; 
+        }
+        else if((g.vertices[check].label.length()) > (g.vertices[longest].label.length()))
+        {
+            longest = check; 
+        }
+        else if((g.vertices[check].label.length()) < (g.vertices[shortest].label.length()))
+        {
+            shortest = check; 
+        }
+    }
+
+    System.out.println("North Extreme Lat: " + g.vertices[north].point.lat + "    Lng: " + g.vertices[north].point.lng);
+    System.out.println("South Extreme Lat: " + g.vertices[south].point.lat + "    Lng: " + g.vertices[south].point.lng);
+    System.out.println("East Extreme Lat: " + g.vertices[east].point.lat + "    Lng: " + g.vertices[east].point.lng);
+    System.out.println("West Extreme Lat: " + g.vertices[west].point.lat + "    Lng: " + g.vertices[west].point.lng);
+    System.out.println("Longest Label: " + g.vertices[longest].label);
+    System.out.println("Shortest Label: " + g.vertices[shortest].label);
+
     }
 }
